@@ -1,0 +1,46 @@
+name: Laravel CI/CD
+
+on:
+  push:
+    branches:
+      - awa_talla_emergement
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_DATABASE: gestion_livre
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+    - name: ⬇️ Cloner le dépôt
+      uses: actions/checkout@v3
+
+    - name: 🧰 Installer PHP, Composer, Extensions Laravel
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, bcmath, pdo, pdo_mysql
+
+    - name: 📦 Installer les dépendances Laravel
+      run: |
+        composer install --no-interaction --prefer-dist --optimize-autoloader
+        cp .env.example .env
+        php artisan key:generate
+
+    - name: ✅ Lancer les tests
+      run: php artisan test
+
+    - name: 🐳 Construire une image Docker
+      run: docker build -t librairie_app .
