@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Étape 1 : Utiliser une image PHP avec Apache
 FROM php:8.2-apache
 
@@ -27,7 +27,7 @@ RUN chown -R www-data:www-data /var/www/html \
 
 # Étape 6 : Lancer Apache
 CMD ["apache2-foreground"]
-=======
+
 FROM php:8.2-fpm
 
 # Installer les dépendances système
@@ -65,4 +65,4 @@ RUN chown -R www-data:www-data /var/www
 
 EXPOSE 9000
 CMD ["php-fpm"]
->>>>>>> e1ce801 (Test CI)
+
