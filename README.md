@@ -1,5 +1,10 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+# Gestion_Prof
+=======
+>>>>>>> e1ce801 (Test CI)
 =======
 # Gestion_Prof
 =======
@@ -71,9 +76,13 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 # Gestion_Prof
 >>>>>>> 7ce0304 (Initial commit)
+=======
+>>>>>>> 25fd8de (Initial commit)
+>>>>>>> e1ce801 (Test CI)
 =======
 >>>>>>> 25fd8de (Initial commit)
 >>>>>>> e1ce801 (Test CI)

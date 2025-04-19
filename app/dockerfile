@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Étape 1 : Utiliser une image PHP avec Apache
 FROM php:8.2-apache
 
@@ -26,3 +27,42 @@ RUN chown -R www-data:www-data /var/www/html \
 
 # Étape 6 : Lancer Apache
 CMD ["apache2-foreground"]
+=======
+FROM php:8.2-fpm
+
+# Installer les dépendances système
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpng-dev \
+    libjpeg-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    git \
+    curl \
+    libzip-dev \
+    libpq-dev \
+    libmcrypt-dev \
+    libssl-dev \
+    libsqlite3-dev \
+    mariadb-client
+
+# Installer Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Créer un répertoire de travail
+WORKDIR /var/www
+
+# Copier les fichiers
+COPY . .
+
+# Installer les dépendances Laravel
+RUN composer install
+
+# Donner les droits
+RUN chown -R www-data:www-data /var/www
+
+EXPOSE 9000
+CMD ["php-fpm"]
+>>>>>>> e1ce801 (Test CI)
